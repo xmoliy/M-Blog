@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>T.E.S.T博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="/static/tiny_mce/tiny_mce.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">T.E.S.T</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href=/addBlog>发布新内容</a>
+						</li>
+						<li>
+							 <a href="/logout">用户登出</a>
+						</li>
+                        <li>&nbsp;&nbsp;&nbsp;</li>
+					</ul>
+				</div>
+			</nav>
+            <h4> &nbsp;</h4>
+            <h4> &nbsp;</h4>
+
+            <div class="jumbotron">
+				<h1>
+					{{ blog.title }}
+				</h1>
+                <p>
+					本篇浏览次数：{{ blog.cnt }}
+				</p>
+                <hr>
+				<p>
+					{{ blog.content|safe }}
+				</p>
+{#                <p>#}
+{#                    图片备用#}
+{#				</p>#}
+				<p>
+					 <a class="btn btn-primary btn-large" href="/edit?id={{ blog.id }}">编辑</a>
+				</p>
+			</div>
+{#            评论区#}
+            <hr>
+                {% for replay in blog.replay_set.all %}
+
+                <blockquote>
+				<p>
+					{{ replay.content|safe }}
+				</p> <small><cite>{{ replay.user.name }}</cite></small>
+			</blockquote>
+                {% endfor %}
+            <hr>
+            <form role="form" method="post" action="/replay">
+                {% csrf_token %}
+                <h3>吐槽区</h3>
+                <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                <textarea name="repaly_content"></textarea><br>
+                <button type="submit" class="btn btn-default">提交</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+ tinyMCE.init({
+        'theme':'advanced',
+        'mode':'textareas',
+        'width':940,
+        'height':200});
+    function save() {
+        document.forms[0].submit();
+    }
+</script>
+</body>
+</html>

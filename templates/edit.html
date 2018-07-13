@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>T.E.S.T博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="/static/tiny_mce/tiny_mce.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">T.E.S.T</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="/addBlog">发布新内容</a>
+						</li>
+						<li>
+							 <a href="/logout">用户登出</a>
+						</li>
+                        <li>&nbsp;&nbsp;&nbsp;</li>
+					</ul>
+				</div>
+			</nav>
+            <h4> &nbsp;</h4>
+            <h4> &nbsp;</h4>
+            <hr>
+            <form role="form" method="post" action="/edit">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ data.id }}">
+                <div class="form-group">
+					 <label for="inputTitle" class="col-sm-2 control-label">标题</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="inputTitle" name="title" value="{{ data.title }}"/>
+					</div>
+				</div>
+
+                <div class="form-group">
+					 <label for="inputSummary" class="col-sm-2 control-label">概要</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="inputSummary" name="summary" value="{{ data.summary }}" />
+					</div>
+				</div>
+                <div class="form-group">
+                <textarea name="content">{{ data.content|safe }}</textarea><br>
+
+                </div>
+			</form>
+             <button onclick="save()" class="btn btn-default">保存</button>
+		</div>
+	</div>
+</div>
+<script>
+ tinyMCE.init({
+        'theme':'advanced',
+        'mode':'textareas',
+        'width':940,
+        'height':200});
+  function save() {
+        document.forms[0].submit();
+
+    }
+</script>
+</body>
+</html>

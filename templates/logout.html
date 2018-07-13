@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load static %}
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>T.E.S.T博客</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">T.E.S.T</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							 <a href="/">登录</a>
+						</li>
+						<li>
+							 <a href="regist">注册</a>
+						</li>
+                    </ul>
+                </div>
+			    </nav>
+		</div>
+        <div>
+            <h4> &nbsp;</h4>
+            <h4> &nbsp;</h4>
+        </div>
+			<div class="page-header">
+				<h1>
+					{{ msg }} <small>再见</small>
+				</h1>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

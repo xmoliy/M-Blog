@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>T.E.S.T博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">T.E.S.T</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="/addBlog">发布新内容</a>
+						</li>
+						<li>
+							 <a href="/logout">用户登出</a>
+						</li>
+                        <li>&nbsp;&nbsp;&nbsp;</li>
+					</ul>
+				</div>
+			</nav>
+            <h4> &nbsp;</h4>
+            <h4> &nbsp;</h4>
+
+{#           博客标题列表#}
+            {% for data in datas %}
+                <h2>
+                    {{ data.title }}
+                </h2>
+                <p>
+                    {{ data.summary }}
+                </p>
+                <p>
+                     <a class="btn" href="show/{{ data.id }}">点击查看更多 »</a>
+                </p>
+                <hr>
+
+             {% endfor %}
+{#            分页#}
+			<ul class="pagination pagination-lg">
+				<li>
+					 <a href="#">Prev</a>
+				</li>
+{#                {% for num in page_range %}#}
+{#				<li>#}
+{#					 <a href="/bloglist/{{ num }}">{{ num }}</a>#}
+{#				</li>#}
+{#                {% endfor %}#}
+                <li>
+					 <a href="#">1</a>
+				</li>
+                <li>
+					 <a href="#">2</a>
+				</li>
+                <li>
+					 <a href="#">3</a>
+				</li>
+				<li>
+					 <a href="#">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>
